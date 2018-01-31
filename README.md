@@ -3,7 +3,7 @@
 <img src="https://www.ansible.com/hs-fs/hub/file-448313641-png/favicon.png" width="32" height="32" align="left" />
 
 - https://www.ansible.com/resources/get-started
-- [tree/master/ansible](tree/master/ansible)
+- [tree/master/ansible](ansible)
 
 ### grafana @ 192.168.0.11
 
@@ -18,3 +18,11 @@
 
 - https://prometheus.io/docs/introduction/first_steps
 - http://192.168.0.12:9090/targets
+
+
+
+### tester @ 192.168.0.14
+
+### worker  @ 192.168.0.15
+
+### worker @ 192.168.0.16
