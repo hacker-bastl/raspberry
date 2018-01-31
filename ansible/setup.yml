@@ -1,0 +1,57 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: "dependencies"
+    apt: name={{item}} state=present
+    with_items:
+      - python-pip
+      - git
+
+- hosts: blinkt
+  become: true
+  tasks:
+
+  - name: "dependencies"
+    pip: name={{item}} state=present
+    with_items:
+      - blinkt
+      - numpy
+
+- hosts: blinkt
+  tasks:
+
+  - name: "reset autostart"
+    cron:
+      name: "autostart"
+      state: absent
+
+  - name: "setup autostart"
+    cron:
+      job: "/usr/bin/python /home/pi/client.py &"
+      special_time: reboot
+
+- hosts: unicornhat
+  become: true
+  tasks:
+
+  - name: "dependencies"
+    pip: name={{item}} state=present
+    with_items:
+      - paho-mqtt
+      - unicornhat
+
+- hosts: unicornhat
+  tasks:
+
+  - name: "reset autostart"
+    cron:
+      name: "autostart"
+      state: absent
+
+  - name: "setup autostart"
+    cron:
+      job: "/usr/bin/sudo /usr/bin/python /home/pi/client.py &"
+      special_time: reboot
