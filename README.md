@@ -5,6 +5,7 @@
 - https://www.ansible.com/resources/get-started
 - [tree/master/ansible](ansible)
 
+
 ### grafana @ 192.168.0.11
 
 <img src="https://grafana.com/img/fav32.png" width="32" height="32" align="left" />
@@ -12,9 +13,26 @@
 - http://docs.grafana.org/features/datasources/prometheus
 - http://192.168.0.11:3000/datasources
 
+
 ### prometheus @ 192.168.0.12
 
 <img src="https://prometheus.io/assets/favicons/favicon.ico" width="32" height="32" align="left" />
 
 - https://prometheus.io/docs/visualization/grafana
 - http://192.168.0.12:9090/targets
+
+
+### unicornhat LEDs
+
+<img src="https://avatars.githubusercontent.com/u/2399917" width="32" height="32" align="left" />
+
+- https://github.com/pimoroni/unicorn-hat/
+- http://docs.pimoroni.com/unicornhat/
+
+
+### blinkt LEDs
+
+<img src="https://avatars.githubusercontent.com/u/2399917" width="32" height="32" align="left" />
+
+- https://github.com/pimoroni/blinkt/blob/master/examples/pulse.py
+- http://docs.pimoroni.com/blinkt/
