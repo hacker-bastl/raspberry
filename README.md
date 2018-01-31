@@ -24,7 +24,7 @@
 
 ### unicornhat LEDs
 
-<img src="https://avatars.githubusercontent.com/u/2399917" width="32" height="32" align="left" />
+<img src="https://avatars.githubusercontent.com/u/1294177" width="32" height="32" align="left" />
 
 - https://github.com/pimoroni/unicorn-hat/
 - http://docs.pimoroni.com/unicornhat/
