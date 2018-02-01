@@ -1,3 +1,6 @@
+<img src="img/screenshot-a.png" width="400" height="300" /> <img src="img/screenshot-b.png" width="400" height="300" />
+
+
 ### ansible @ 192.168.0.10
 
 <img src="https://www.ansible.com/hs-fs/hub/file-448313641-png/favicon.png" width="32" height="32" align="left" />
