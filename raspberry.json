@@ -64,7 +64,7 @@
               "legendFormat": "",
               "metric": "node_cpu",
               "refId": "A",
-              "step": 2
+              "step": 21
             }
           ],
           "timeFrom": null,
@@ -103,6 +103,7 @@
           },
           "id": 5,
           "isNew": true,
+          "leftYAxisLabel": "",
           "legend": {
             "avg": false,
             "current": false,
@@ -129,7 +130,7 @@
               "expr": "node_memory_MemFree",
               "intervalFactor": 2,
               "refId": "A",
-              "step": 2
+              "step": 21
             }
           ],
           "timeFrom": null,
@@ -145,8 +146,7 @@
           "y_formats": [
             "bytes",
             "short"
-          ],
-          "leftYAxisLabel": ""
+          ]
         },
         {
           "aliasColors": {},
@@ -157,8 +157,8 @@
           "fill": 1,
           "grid": {
             "leftLogBase": 1,
-            "leftMax": null,
-            "leftMin": null,
+            "leftMax": 8053063680,
+            "leftMin": 0,
             "rightLogBase": 1,
             "rightMax": null,
             "rightMin": null,
@@ -170,6 +170,7 @@
           },
           "id": 8,
           "isNew": true,
+          "leftYAxisLabel": "",
           "legend": {
             "avg": false,
             "current": false,
@@ -198,7 +199,7 @@
               "intervalFactor": 2,
               "metric": "node_filesystem_avail",
               "refId": "A",
-              "step": 2
+              "step": 21
             }
           ],
           "timeFrom": null,
@@ -214,8 +215,7 @@
           "y_formats": [
             "bits",
             "short"
-          ],
-          "leftYAxisLabel": ""
+          ]
         }
       ],
       "title": "New row"
@@ -273,7 +273,7 @@
               "intervalFactor": 2,
               "metric": "node_network_receive_bytes",
               "refId": "A",
-              "step": 2
+              "step": 21
             }
           ],
           "timeFrom": null,
@@ -312,6 +312,7 @@
           },
           "id": 6,
           "isNew": true,
+          "leftYAxisLabel": "",
           "legend": {
             "avg": false,
             "current": false,
@@ -338,7 +339,7 @@
               "expr": "rate(node_network_transmit_bytes[1m])",
               "intervalFactor": 2,
               "refId": "A",
-              "step": 2
+              "step": 21
             }
           ],
           "timeFrom": null,
@@ -354,8 +355,7 @@
           "y_formats": [
             "bytes",
             "short"
-          ],
-          "leftYAxisLabel": ""
+          ]
         },
         {
           "aliasColors": {},
@@ -378,6 +378,7 @@
           },
           "id": 9,
           "isNew": true,
+          "leftYAxisLabel": "",
           "legend": {
             "avg": false,
             "current": false,
@@ -406,7 +407,7 @@
               "intervalFactor": 2,
               "metric": "node_disk_bytes_written",
               "refId": "A",
-              "step": 2
+              "step": 21
             }
           ],
           "timeFrom": null,
@@ -422,15 +423,14 @@
           "y_formats": [
             "bytes",
             "short"
-          ],
-          "leftYAxisLabel": ""
+          ]
         }
       ],
       "title": "New row"
     }
   ],
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -466,6 +466,6 @@
     "list": []
   },
   "schemaVersion": 8,
-  "version": 20,
+  "version": 21,
   "links": []
 }
