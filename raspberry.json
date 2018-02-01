@@ -12,7 +12,7 @@
     {
       "collapse": false,
       "editable": true,
-      "height": "250px",
+      "height": "350px",
       "panels": [
         {
           "aliasColors": {},
@@ -192,7 +192,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "node_filesystem_avail",
+              "expr": "node_filesystem_avail{mountpoint=\"/\"}",
               "hide": false,
               "intervalFactor": 2,
               "metric": "node_filesystem_avail",
@@ -202,7 +202,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "node_filesystem_avail",
+          "title": "node_filesystem_avail{mountpoint=\"/\"}",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -221,7 +221,7 @@
     {
       "collapse": false,
       "editable": true,
-      "height": "250px",
+      "height": "350px",
       "panels": [
         {
           "aliasColors": {},
@@ -231,7 +231,7 @@
           "error": false,
           "fill": 1,
           "grid": {
-            "leftLogBase": 1,
+            "leftLogBase": 2,
             "leftMax": null,
             "leftMin": null,
             "rightLogBase": 1,
@@ -297,7 +297,7 @@
           "error": false,
           "fill": 1,
           "grid": {
-            "leftLogBase": 1,
+            "leftLogBase": 2,
             "leftMax": null,
             "leftMin": null,
             "rightLogBase": 1,
@@ -362,7 +362,7 @@
           "error": false,
           "fill": 1,
           "grid": {
-            "leftLogBase": 1,
+            "leftLogBase": 2,
             "leftMax": null,
             "leftMin": null,
             "rightLogBase": 1,
@@ -462,6 +462,6 @@
     "list": []
   },
   "schemaVersion": 8,
-  "version": 11,
+  "version": 15,
   "links": []
 }
