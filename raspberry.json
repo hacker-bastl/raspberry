@@ -64,12 +64,12 @@
               "legendFormat": "",
               "metric": "node_cpu",
               "refId": "A",
-              "step": 60
+              "step": 2
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "rate(node_cpu{mode=\"idle\"}[1m])",
+          "title": "idle CPU",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -91,7 +91,7 @@
           "fill": 1,
           "grid": {
             "leftLogBase": 1,
-            "leftMax": null,
+            "leftMax": 536870912,
             "leftMin": null,
             "rightLogBase": 1,
             "rightMax": null,
@@ -129,12 +129,12 @@
               "expr": "node_memory_MemFree",
               "intervalFactor": 2,
               "refId": "A",
-              "step": 60
+              "step": 2
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "node_memory_MemFree",
+          "title": "free memory",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -145,7 +145,8 @@
           "y_formats": [
             "bytes",
             "short"
-          ]
+          ],
+          "leftYAxisLabel": ""
         },
         {
           "aliasColors": {},
@@ -197,12 +198,12 @@
               "intervalFactor": 2,
               "metric": "node_filesystem_avail",
               "refId": "A",
-              "step": 60
+              "step": 2
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "node_filesystem_avail{mountpoint=\"/\"}",
+          "title": "available filesystem",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -213,7 +214,8 @@
           "y_formats": [
             "bits",
             "short"
-          ]
+          ],
+          "leftYAxisLabel": ""
         }
       ],
       "title": "New row"
@@ -233,7 +235,7 @@
           "grid": {
             "leftLogBase": 2,
             "leftMax": null,
-            "leftMin": null,
+            "leftMin": 64,
             "rightLogBase": 1,
             "rightMax": null,
             "rightMin": null,
@@ -271,12 +273,12 @@
               "intervalFactor": 2,
               "metric": "node_network_receive_bytes",
               "refId": "A",
-              "step": 60
+              "step": 2
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "rate(node_network_receive_bytes[1m])",
+          "title": "bytes received",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -299,7 +301,7 @@
           "grid": {
             "leftLogBase": 2,
             "leftMax": null,
-            "leftMin": null,
+            "leftMin": 64,
             "rightLogBase": 1,
             "rightMax": null,
             "rightMin": null,
@@ -336,12 +338,12 @@
               "expr": "rate(node_network_transmit_bytes[1m])",
               "intervalFactor": 2,
               "refId": "A",
-              "step": 60
+              "step": 2
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "rate(node_network_transmit_bytes[1m])",
+          "title": "bytes transmitted",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -352,7 +354,8 @@
           "y_formats": [
             "bytes",
             "short"
-          ]
+          ],
+          "leftYAxisLabel": ""
         },
         {
           "aliasColors": {},
@@ -364,7 +367,7 @@
           "grid": {
             "leftLogBase": 2,
             "leftMax": null,
-            "leftMin": null,
+            "leftMin": 1024,
             "rightLogBase": 1,
             "rightMax": null,
             "rightMin": null,
@@ -403,12 +406,12 @@
               "intervalFactor": 2,
               "metric": "node_disk_bytes_written",
               "refId": "A",
-              "step": 60
+              "step": 2
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "rate(node_disk_bytes_written{device=\"mmcblk0\"}[1m])",
+          "title": "bytes written",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -419,14 +422,15 @@
           "y_formats": [
             "bytes",
             "short"
-          ]
+          ],
+          "leftYAxisLabel": ""
         }
       ],
       "title": "New row"
     }
   ],
   "time": {
-    "from": "now-3h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -462,6 +466,6 @@
     "list": []
   },
   "schemaVersion": 8,
-  "version": 15,
+  "version": 20,
   "links": []
 }
