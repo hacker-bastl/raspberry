@@ -30,6 +30,7 @@
 
   - name: "setup autostart"
     cron:
+      name: "autostart"
       job: "/usr/bin/python /home/pi/client.py &"
       special_time: reboot
 
@@ -53,5 +54,6 @@
 
   - name: "setup autostart"
     cron:
+      name: "autostart"
       job: "/usr/bin/sudo /usr/bin/python /home/pi/client.py &"
       special_time: reboot
