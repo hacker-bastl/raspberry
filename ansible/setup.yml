@@ -10,6 +10,11 @@
       - python-pip
       - git
 
+  - name: "python packages"
+    pip: name={{item}} state=present
+    with_items:
+      - prometheus_client
+
 - hosts: blinkt
   become: true
   tasks:
@@ -18,7 +23,7 @@
     pip: name={{item}} state=present
     with_items:
       - blinkt
-      - numpy
+      - psutil
 
 - hosts: blinkt
   tasks:
