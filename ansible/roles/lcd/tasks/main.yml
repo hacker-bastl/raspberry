@@ -1,0 +1,34 @@
+---
+
+- name: "install system packages"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - i2c-tools
+    - python-smbus
+
+- name: "install python packages"
+  become: true
+  pip:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - RPi.GPIO
+
+- name: "install display script"
+  copy:
+    dest: /home/pi/display.py
+    src: display.py
+
+- name: "reset display autostart"
+  cron:
+    name: "autostart"
+    state: absent
+
+- name: "setup display autostart"
+  cron:
+    name: "autostart"
+    job: "/usr/bin/sudo /usr/bin/python /home/pi/display.py &"
+    special_time: reboot
