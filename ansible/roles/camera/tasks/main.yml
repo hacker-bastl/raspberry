@@ -1,0 +1,35 @@
+---
+
+- name: "install system packages"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - python-pantilthat
+    - python-picamera
+
+- name: "install python packages"
+  become: true
+  pip:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - pantilthat
+    - picamera
+
+- name: "install webcam script"
+  copy:
+    dest: /home/pi/webcam.py
+    src: webcam.py
+
+- name: "reset webcam autostart"
+  cron:
+    name: "webcam"
+    state: absent
+
+- name: "setup webcam autostart"
+  cron:
+    name: "webcam"
+    job: "/usr/bin/python3 /home/pi/webcam.py &"
+    special_time: reboot
