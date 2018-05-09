@@ -1,0 +1,26 @@
+---
+
+- name: "install python packages"
+  become: true
+  pip:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - blinkt
+    - numpy
+
+- name: "install client script"
+  copy:
+    dest: /home/pi/display.py
+    src: display.py
+
+- name: "reset script autostart"
+  cron:
+    name: "autostart"
+    state: absent
+
+- name: "setup script autostart"
+  cron:
+    name: "autostart"
+    job: "/usr/bin/python /home/pi/display.py &"
+    special_time: reboot
