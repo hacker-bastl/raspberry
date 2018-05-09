@@ -1,0 +1,25 @@
+---
+
+- name: "install system packages"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - mosquitto
+
+- name: "install webpage script"
+  copy:
+    dest: /home/pi/webpage.py
+    src: webpage.py
+
+- name: "reset webpage autostart"
+  cron:
+    name: "webpage"
+    state: absent
+
+- name: "setup webpage autostart"
+  cron:
+    name: "webpage"
+    job: "/usr/bin/python /home/pi/webpage.py &"
+    special_time: reboot
