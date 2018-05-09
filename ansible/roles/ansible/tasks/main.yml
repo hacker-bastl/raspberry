@@ -1,0 +1,30 @@
+---
+
+- name: "install system package"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - ansible
+
+- name: "install deployment script"
+  copy:
+    dest: /home/github/deploy.sh
+    src: deploy.sh
+
+- name: "deployment configuration directory"
+  become: true
+  file:
+    path: /home/github/
+    state: directory
+    owner: pi
+    group: users
+    mode: 0755
+
+- name: "download deployment configuration"
+  git:
+    repo: "https://github.com/hacker-bastl/raspberry.git"
+    dest: /home/github/
+    force: true
+    depth: 1
