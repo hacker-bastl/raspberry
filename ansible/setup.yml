@@ -1,64 +1,31 @@
 ---
 
+- hosts: control
+  serial: 1
+  roles:
+    - role: ansible
+    - role: prometheus
+    - role: grafana
+    - role: broker
+
 - hosts: all
-  become: true
-  tasks:
+  serial: 3
+  roles:
+    - role: network
+    - role: packages
+    - role: metrics
 
-  - name: "dependencies"
-    apt: name={{item}} state=present
-    with_items:
-      - python-pip
-      - git
+- hosts: cluster
+  serial: 3
+  roles:
+    - role: cluster
 
-  - name: "python packages"
-    pip: name={{item}} state=present
-    with_items:
-      - prometheus_client
+- hosts: camera
+  serial: 1
+  roles:
+    - role: camera
 
-- hosts: blinkt
-  become: true
-  tasks:
-
-  - name: "dependencies"
-    pip: name={{item}} state=present
-    with_items:
-      - blinkt
-      - psutil
-
-- hosts: blinkt
-  tasks:
-
-  - name: "reset autostart"
-    cron:
-      name: "autostart"
-      state: absent
-
-  - name: "setup autostart"
-    cron:
-      name: "autostart"
-      job: "/usr/bin/python /home/pi/client.py &"
-      special_time: reboot
-
-- hosts: unicornhat
-  become: true
-  tasks:
-
-  - name: "dependencies"
-    pip: name={{item}} state=present
-    with_items:
-      - paho-mqtt
-      - unicornhat
-
-- hosts: unicornhat
-  tasks:
-
-  - name: "reset autostart"
-    cron:
-      name: "autostart"
-      state: absent
-
-  - name: "setup autostart"
-    cron:
-      name: "autostart"
-      job: "/usr/bin/sudo /usr/bin/python /home/pi/client.py &"
-      special_time: reboot
+- hosts: kiosk
+  serial: 1
+  roles:
+    - role: kiosk

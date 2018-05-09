@@ -1,0 +1,21 @@
+---
+
+- hosts: message
+  serial: 2
+  roles:
+    - role: lcd
+
+- hosts: timeseries
+  serial: 3
+  roles:
+    - role: unicorn
+
+- hosts: status
+  serial: 3
+  roles:
+    - role: blinkt
+
+- hosts: all
+  serial: 9
+  roles:
+    - role: reboot
