@@ -1,0 +1,19 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+
+source-directory /etc/network/interfaces.d
+
+auto lo
+iface lo inet loopback
+
+auto wlan0
+iface wlan0 inet manual
+    wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+
+iface mobile inet dhcp
+iface work inet dhcp
+iface home inet static
+    dns-nameservers 192.168.0.1
+    address {{ ansible_wlan0.ipv4.address }}
+    netmask 255.255.255.0
+    gateway 192.168.0.1
+

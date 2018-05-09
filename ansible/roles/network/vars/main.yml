@@ -1,0 +1,13 @@
+# http://docs.ansible.com/ansible/latest/playbooks_best_practices.html#variables-and-vaults
+---
+
+wifi_mobile_essid: "{{ vault_wifi_mobile_essid }}"
+wifi_mobile_psk: "{{ vault_wifi_mobile_psk }}"
+
+wifi_work_essid: "{{ vault_wifi_work_essid }}"
+wifi_work_password: "{{ vault_wifi_work_password }}"
+wifi_work_identity: "{{ vault_wifi_work_identity }}"
+
+wifi_home_essid: "{{ vault_wifi_home_essid }}"
+wifi_home_psk: "{{ vault_wifi_home_psk }}"
+

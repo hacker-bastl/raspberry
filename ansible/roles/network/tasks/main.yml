@@ -1,0 +1,28 @@
+---
+
+- name: "configure network interfaces"
+  become: true
+  template:
+    dest: /etc/network/interfaces
+    src: interfaces
+    mode: "u=rw,g=r,o=r"
+    owner: root
+    group: root
+
+- name: "loading wifi configuration"
+  include_vars: vars/vault.yml
+
+- name: "configure wifi environments"
+  become: true
+  template:
+    dest: /etc/wpa_supplicant/wpa_supplicant.conf
+    src: wpa_supplicant.conf
+    mode: "u=r"
+    owner: root
+    group: root
+
+- name: "install ssh keys"
+  copy:
+    dest: /home/pi/.ssh/authorized_keys
+    src: authorized_keys
+    mode: "u=rw"
