@@ -1,0 +1,26 @@
+---
+
+- name: "install system packages"
+  become: true
+  apt:
+    install_recommends: false
+    name: "{{item}}"
+    state: present
+  with_items:
+    - chromium-browser
+    - lightdm
+    - openbox
+    - xinit
+    - xserver-xorg
+    - x11-xserver-utils
+
+- name: "install autostart script"
+  become: true
+  copy:
+    dest: /etc/xdg/openbox/autostart
+    src: autostart
+
+- name: "install login script"
+  copy:
+    dest: /home/.pi/.bash_profile
+    src: bash_profile
