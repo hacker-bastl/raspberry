@@ -1,0 +1,37 @@
+---
+
+- name: "install prometheus package"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - prometheus
+
+- name: "configure prometheus"
+  become: true
+  copy:
+    dest: /etc/prometheus/prometheus.yml
+    src: prometheus.yml
+    mode: "u=rw,g=r,o=r"
+    owner: root
+    group: root
+
+- name: "remove exporter autostart"
+  become: true
+  cron:
+    name: "exporter"
+    state: absent
+
+- name: "reset prometheus autostart"
+  become: true
+  cron:
+    name: "prometheus"
+    state: absent
+
+- name: "setup prometheus autostart"
+  become: true
+  cron:
+    name: "prometheus"
+    job: "/usr/sbin/service prometheus start &"
+    special_time: reboot
