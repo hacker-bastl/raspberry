@@ -1,0 +1,17 @@
+---
+
+- name: "install cluster script"
+  copy:
+    dest: /home/pi/cluster.py
+    src: cluster.py
+
+- name: "reset cluster autostart"
+  cron:
+    name: "cluster"
+    state: absent
+
+- name: "setup cluster autostart"
+  cron:
+    name: "cluster"
+    job: "/usr/bin/python /home/pi/cluster.py &"
+    special_time: reboot
