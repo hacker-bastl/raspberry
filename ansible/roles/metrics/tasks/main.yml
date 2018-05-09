@@ -1,0 +1,22 @@
+---
+
+- name: "install metrics exporter"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - prometheus-node-exporter
+
+- name: "reset exporter autostart"
+  become: true
+  cron:
+    name: "exporter"
+    state: absent
+
+- name: "setup exporter autostart"
+  become: true
+  cron:
+    name: "exporter"
+    job: "/usr/sbin/service prometheus-node-exporter start &"
+    special_time: reboot
