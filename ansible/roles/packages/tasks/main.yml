@@ -1,0 +1,41 @@
+---
+
+- name: "update software package list"
+  become: true
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  changed_when: false
+
+- name: "upgrade distribution release"
+  become: true
+  apt:
+    upgrade: dist
+
+- name: "upgrade all software packages"
+  become: true
+  apt:
+    upgrade: full
+
+- name: "install system packages"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - git
+    - nodejs
+    - npm
+    - python
+    - python-pip
+    - vim
+
+- name: "install python packages"
+  become: true
+  pip:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - paho-mqtt
+    - prometheus_client
+    - psutil
