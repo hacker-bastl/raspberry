@@ -1,0 +1,8 @@
+---
+
+- name: "REBOOT hardware"
+  become: true
+  command: "/sbin/shutdown -r +1"
+  ignore_errors: true
+  async: false
+  poll: false
