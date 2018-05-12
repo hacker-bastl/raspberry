@@ -31,5 +31,5 @@
 - name: "setup webcam autostart"
   cron:
     name: "webcam"
-    job: "/usr/bin/python3 /home/pi/webcam.py &"
+    job: "/usr/bin/sudo /usr/bin/python3 /home/pi/webcam.py &"
     special_time: reboot
