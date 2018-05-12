@@ -22,5 +22,5 @@
 
 - name: "install login script"
   copy:
-    dest: /home/.pi/.bash_profile
+    dest: /home/pi/.bash_profile
     src: bash_profile
