@@ -15,10 +15,10 @@
     - role: packages
     - role: metrics
 
-- hosts: worker
+- hosts: robot
   serial: 3
   roles:
-    - role: worker
+    - role: robot
 
 - hosts: camera
   serial: 1
