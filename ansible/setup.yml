@@ -15,17 +15,18 @@
     - role: packages
     - role: metrics
 
-- hosts: cluster
+- hosts: worker
   serial: 3
   roles:
-    - role: cluster
+    - role: worker
 
 - hosts: camera
   serial: 1
   roles:
     - role: camera
+    - role: kiosk
 
-- hosts: kiosk
+- hosts: radio
   serial: 1
   roles:
-    - role: kiosk
+    - role: radio

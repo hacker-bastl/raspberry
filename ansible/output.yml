@@ -5,12 +5,12 @@
   roles:
     - role: lcd
 
-- hosts: timeseries
+- hosts: matrix
   serial: 3
   roles:
     - role: unicorn
 
-- hosts: status
+- hosts: gauge
   serial: 3
   roles:
     - role: blinkt
