@@ -29,7 +29,7 @@ class WebsocketHandler( SocketServer.BaseRequestHandler ):
             client.subscribe( 'raspberry/status' )
         def receive( client, userdata, message ) :
             try : handler.send_frame( message.payload )
-            except: connected = False # TODO
+            except: connected = False # TODO?
         client = paho.mqtt.client.Client()
         client.on_connect = subscribe
         client.on_message = receive
@@ -44,80 +44,7 @@ class WebsocketHandler( SocketServer.BaseRequestHandler ):
 
 if __name__ == '__main__' :
     try :
-        socketserver = WebsocketServer( ( '', 8080 ), WebsocketHandler )
+        socketserver = WebsocketServer( ( '', 8000 ), WebsocketHandler )
         threading.Thread( target = socketserver.serve_forever ).start()
-    except :
-        print >>sys.stderr, sys.exc_info()[ 1 ]
-
-
-# https://docs.python.org/2/library/basehttpserver.html
-
-class WebpageServer( BaseHTTPServer.HTTPServer ) :
-    pass
-
-class WebpageHandler( BaseHTTPServer.BaseHTTPRequestHandler ) :
-    def do_POST( self ) :
-        self.send_response( 204 )
-        self.end_headers()
-        command = self.rfile.readline().strip()
-        print str( command )
-    def do_GET( self ):
-        self.send_response( 200 )
-        self.send_header( 'Content-type', 'text/html' )
-        self.end_headers()
-        self.wfile.write( HTML_PAGE )
-
-
-HTML_PAGE = """<!DOCTYPE html>
-<html>
-    <head>
-        <title> Raspberry Messages </title>
-        <link type="image/png" href="//www.raspberrypi.org/app/themes/mind-control/images/favicon.png" rel="icon" />
-        <script type="text/javascript">
-
-            window.addEventListener( 'load', function restart() {
-                var websocket = new WebSocket( 'ws://' + location.host.split( ':' ).shift() + ':8080' );
-                websocket.onclose = function() { setTimeout( restart, 1E4 ); };
-                websocket.onmessage = function( message ) {
-                    console.log( message.data );
-                    var node = document.createElement( 'li' );
-                    var timestamp = new Date( new Date().getTime() - new Date()
-                        .getTimezoneOffset() * 60 * 1E3 ).toJSON().substring( 11, 23 )
-                    node.textContent = timestamp + ' ' + message.data;
-                    var parent = document.querySelector( 'ul' );
-                    if( parent.childNodes.length < 1 ) parent.appendChild( node );
-                    else parent.insertBefore( node, parent.firstChild );
-                    while( parent.childNodes.length > 32 ) parent.lastChild.remove()
-                };
-            } );
-
-        </script>
-        <style type="text/css">
-
-            body {
-                font-family: "Courier New", monospace;
-                white-space: nowrap;
-                overflow-x: hidden;
-                overflow-y: scroll;
-            }
-
-            ul, li {
-                list-style: none;
-            }
-
-        </style>
-    </head>
-    <body>
-        <ul></ul>
-    </body>
-</html>
-
-"""
-
-
-if __name__ == '__main__' :
-    try :
-        webserver = WebpageServer( ( '', 8000 ), WebpageHandler )
-        threading.Thread( target = webserver.serve_forever ).start()
     except :
         print >>sys.stderr, sys.exc_info()[ 1 ]

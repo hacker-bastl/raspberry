@@ -8,18 +8,18 @@
   with_items:
     - mosquitto
 
-- name: "install webpage script"
+- name: "install websocket script"
   copy:
-    dest: /home/pi/webpage.py
-    src: webpage.py
+    dest: /home/pi/websocket.py
+    src: websocket.py
 
-- name: "reset webpage autostart"
+- name: "reset websocket autostart"
   cron:
-    name: "webpage"
+    name: "websocket"
     state: absent
 
-- name: "setup webpage autostart"
+- name: "setup websocket autostart"
   cron:
-    name: "webpage"
-    job: "/usr/bin/python /home/pi/webpage.py &"
+    name: "websocket"
+    job: "/usr/bin/python /home/pi/websocket.py &"
     special_time: reboot

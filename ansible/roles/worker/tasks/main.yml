@@ -1,17 +1,25 @@
 ---
 
-- name: "install cluster script"
-  copy:
-    dest: /home/pi/cluster.py
-    src: cluster.py
+- name: "install npm packages"
+  npm:
+    name: "{{item}}"
+    path: /home/pi/
+  with_items:
+    - mqtt
+    - request
 
-- name: "reset cluster autostart"
+- name: "install robot script"
+  copy:
+    dest: /home/pi/robot.js
+    src: robot.js
+
+- name: "reset robot autostart"
   cron:
     name: "cluster"
     state: absent
 
-- name: "setup cluster autostart"
+- name: "setup robot autostart"
   cron:
     name: "cluster"
-    job: "/usr/bin/python /home/pi/cluster.py &"
+    job: "/usr/bin/nodejs /home/pi/robot.js &"
     special_time: reboot
