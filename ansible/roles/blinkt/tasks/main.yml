@@ -9,6 +9,13 @@
     - blinkt
     - numpy
 
+- name: "install node modules"
+  npm:
+    path: /home/pi/node_modules
+    name: "{{item}}"
+  with_items:
+    - blinktjs
+
 - name: "install client script"
   copy:
     dest: /home/pi/display.py

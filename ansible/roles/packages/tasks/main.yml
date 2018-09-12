@@ -28,6 +28,7 @@
     - npm
     - python
     - python-pip
+    - python3-pip
     - vim
 
 - name: "install python packages"
