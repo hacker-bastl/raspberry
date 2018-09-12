@@ -1,0 +1,25 @@
+---
+
+- name: "install system packages"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - wiringpi
+
+- name: "install radio script"
+  copy:
+    dest: /home/pi/radio.py
+    src: radio.py
+
+- name: "reset radio autostart"
+  cron:
+    name: "radio"
+    state: absent
+
+- name: "setup radio autostart"
+  cron:
+    name: "radio"
+    job: "/usr/bin/sudo /usr/bin/python /home/pi/radio.py &"
+    special_time: reboot
