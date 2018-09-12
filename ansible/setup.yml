@@ -26,6 +26,11 @@
     - role: camera
     - role: kiosk
 
+- hosts: remote
+  serial: 1
+  roles:
+    - role: remote
+
 - hosts: radio
   serial: 1
   roles:

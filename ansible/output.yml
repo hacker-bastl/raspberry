@@ -1,7 +1,7 @@
 ---
 
 - hosts: message
-  serial: 2
+  serial: 3
   roles:
     - role: lcd
 
@@ -16,6 +16,6 @@
     - role: blinkt
 
 - hosts: all
-  serial: 9
+  serial: 12
   roles:
     - role: reboot
