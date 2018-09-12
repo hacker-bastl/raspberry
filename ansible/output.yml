@@ -1,17 +1,17 @@
 ---
 
 - hosts: message
-  serial: 3
+  serial: 4
   roles:
-    - role: lcd
+    - role: text
 
 - hosts: matrix
-  serial: 3
+  serial: 4
   roles:
     - role: unicorn
 
 - hosts: gauge
-  serial: 3
+  serial: 4
   roles:
     - role: blinkt
 
