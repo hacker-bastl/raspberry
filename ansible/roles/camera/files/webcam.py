@@ -2,18 +2,7 @@
 
 import colorsys, io, logging, math, pantilthat, picamera, random, socketserver, sys, threading, time
 
-
 from http import server
-
-# http://docs.pimoroni.com/pantilthat/
-
-if __name__ == '__main__' :
-    pantilthat.light_mode( pantilthat.WS2812 )
-    pantilthat.light_type( pantilthat.GRBW )
-    pantilthat.pan( 0 )
-    pantilthat.tilt( 0 )
-    pantilthat.clear()
-    pantilthat.show()
 
 
 HTML_PAGE = """<!doctype html>
@@ -26,13 +15,13 @@ HTML_PAGE = """<!doctype html>
         <style type="text/css">
 
             html, body, img {
-                background-color: #000;
-                cursor: progress;
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                padding: 0px;
-                margin: 0px;
+              background-color: #000;
+              cursor: progress;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              padding: 0px;
+              margin: 0px;
             }
 
         </style>
@@ -41,21 +30,10 @@ HTML_PAGE = """<!doctype html>
             window.addEventListener( 'keyup', function( event ) {
               var valid = [ 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '-' ];
               if( valid.indexOf( event.key ) > -1 ) {
-                  var request = new XMLHttpRequest();
-                  request.open( 'POST', '//' + location.host + '/' + event.key );
-                  request.send( null );
+                var request = new XMLHttpRequest();
+                request.open( 'POST', '//' + location.host + '/' + event.key );
+                request.send( null );
               }
-            } );
-
-        </script>
-        <script type="text/javascript">
-
-            window.addEventListener( 'load', function restart() {
-                var websocket = new WebSocket( 'ws://192.168.0.10:8000' );
-                websocket.onclose = function() { setTimeout( restart, 1E4 ); };
-                websocket.onmessage = function( message ) {
-                  console.log( message.data );
-                };
             } );
 
         </script>
@@ -165,14 +143,26 @@ class WebcamHandler( server.BaseHTTPRequestHandler ):
         pantilthat.show()
 
 
-if __name__ == '__main__' :
-    time.sleep( 7 )
+# http://docs.pimoroni.com/pantilthat/
 
-    with picamera.PiCamera( resolution = ( 1024, 768 ), framerate = 25 ) as camera:
+if __name__ == '__main__' :
+    pantilthat.light_mode( pantilthat.WS2812 )
+    pantilthat.light_type( pantilthat.GRBW )
+    pantilthat.pan( 0 )
+    pantilthat.tilt( 0 )
+    pantilthat.clear()
+    pantilthat.show()
+
+
+if __name__ == '__main__' :
+    time.sleep( 13 )
+    # resolution = ( 1920, 1080 )
+    resolution = ( 1024, 768 )
+    with picamera.PiCamera( resolution = resolution, framerate = 25 ) as camera:
         camera.rotation = 180
         camera.led = True
         output = StreamingOutput()
         camera.start_recording( output, format = 'mjpeg' )
-        try : StreamingServer( ( '', 8000 ), WebcamHandler ).serve_forever()
+        try : StreamingServer( ( '', 80 ), WebcamHandler ).serve_forever()
         except : print >>sys.stderr, sys.exc_info()[ 1 ]
         finally: camera.stop_recording()

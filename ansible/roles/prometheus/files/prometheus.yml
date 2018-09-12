@@ -8,10 +8,6 @@ global:
 
 scrape_configs:
 
-  # - job_name: 'prometheus'
-  #   static_configs:
-  #     - targets: ['localhost:9090']
-
   - job_name: 'raspberry'
     static_configs:
 
@@ -19,9 +15,15 @@ scrape_configs:
       - targets: ['192.168.0.11:9100']
       - targets: ['192.168.0.12:9100']
 
+      - targets: ['192.168.0.13:9100']
+
       - targets: ['192.168.0.14:9100']
       - targets: ['192.168.0.15:9100']
       - targets: ['192.168.0.16:9100']
+      - targets: ['192.168.0.17:9100']
 
       - targets: ['192.168.0.18:9100']
       - targets: ['192.168.0.19:9100']
+      - targets: ['192.168.0.20:9100']
+
+      - targets: ['192.168.0.21:9100']

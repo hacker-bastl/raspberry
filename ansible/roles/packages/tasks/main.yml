@@ -39,3 +39,11 @@
     - paho-mqtt
     - prometheus_client
     - psutil
+
+- name: "install node modules"
+  npm:
+    path: /home/pi/node_modules
+    name: "{{item}}"
+  with_items:
+    - mqtt
+    - request
