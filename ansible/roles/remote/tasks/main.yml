@@ -1,0 +1,22 @@
+---
+
+- name: "install system packages"
+  become: true
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - build-essential
+    - libssl-dev
+    - libffi-dev
+    - python-dev
+
+- name: "install python packages"
+  become: true
+  pip3:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - googledatastore
+    - pyatv
+    - zeroconf
