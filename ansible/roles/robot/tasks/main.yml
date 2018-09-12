@@ -1,25 +1,26 @@
 ---
 
-- name: "install npm packages"
-  npm:
-    name: "{{item}}"
-    path: /home/pi/
-  with_items:
-    - mqtt
-    - request
+- name: "setup webserver directory"
+  become: true
+  file:
+    path: /var/www
+    state: directory
+    mode: "u=rwx,g=rx,o=r"
+    owner: pi
+    group: users
 
-- name: "install robot script"
+- name: "install index file"
   copy:
-    dest: /home/pi/robot.js
-    src: robot.js
+    dest: /var/www/index.htm
+    src: index.htm
 
-- name: "reset robot autostart"
+- name: "reset webserver autostart"
   cron:
-    name: "cluster"
+    name: "webserver"
     state: absent
 
-- name: "setup robot autostart"
+- name: "setup webserver autostart"
   cron:
-    name: "cluster"
-    job: "/usr/bin/nodejs /home/pi/robot.js &"
+    name: "webserver"
+    job: "/usr/bin/sudo /usr/bin/python /home/pi/server.py &"
     special_time: reboot

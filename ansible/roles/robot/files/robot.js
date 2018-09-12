@@ -19,16 +19,7 @@ const robot = module.exports = {
     response.end(`<!doctype html>
 <html lang="en">
   <head>
-    <meta name="charset" value="utf-8">
 
-    <title> Raspberry Robots </title>
-
-    <script type="text/javascript">
-
-    </script>
-    <style type="text/css">
-
-    </style>
   </head>
   <body>
 
